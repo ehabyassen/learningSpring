@@ -38,4 +38,14 @@ public class HomePageRestController {
     public String getDeveloperName() {
         return developerName;
     }
+
+    @GetMapping("/workout")
+    public String getDailyWorkout() {
+        return "Run a hard 10k!";
+    }
+
+    @GetMapping("/fortune")
+    public String getDailyFortune() {
+        return "Today is your lucky day!";
+    }
 }
