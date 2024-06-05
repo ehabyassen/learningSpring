@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CoachController {
 
+    //not recommended to use because it make the code harder to unit test
     @Autowired
     private Coach coach;
 
