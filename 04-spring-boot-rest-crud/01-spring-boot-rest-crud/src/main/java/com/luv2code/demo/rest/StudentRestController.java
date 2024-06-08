@@ -17,9 +17,9 @@ public class StudentRestController {
 
     @PostConstruct
     public void fillStudents() {
-        students = List.of(new Student(1, "Ehab", "Ahmed"),
-                new Student(2, "Aya", "Ahmed"),
-                new Student(3, "Eslam", "Ahmed"));
+        students = List.of(new Student("Ehab", "Ahmed"),
+                new Student("Aya", "Ahmed"),
+                new Student("Eslam", "Ahmed"));
     }
 
     @GetMapping("/students")
@@ -30,13 +30,13 @@ public class StudentRestController {
     //http://localhost:8080/api/students/1
     @GetMapping("/students/{studentId}")
     public Student getStudentByPathVariable(@PathVariable int studentId) {
-        return students.stream().filter(student -> student.getId() == studentId).findFirst().orElse(null);
+        return students.get(studentId);
     }
 
     /*
     //http://localhost:8080/api/students?studentId=1
     @GetMapping("/students")
     public Student getStudentByRequestParameter(@RequestParam int studentId) {
-        return students.stream().filter(student -> student.getId() == studentId).findFirst().orElse(null);
+        return students.get(studentId);
     }*/
 }
