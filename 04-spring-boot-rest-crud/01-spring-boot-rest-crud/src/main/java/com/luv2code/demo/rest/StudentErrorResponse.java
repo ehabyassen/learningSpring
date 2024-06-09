@@ -1,20 +1,20 @@
 package com.luv2code.demo.rest;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class StudentErrorResponse {
 
     private int status;
     private String message;
-    private Date date;
+    private ZonedDateTime zonedDateTime;
 
     public StudentErrorResponse() {
     }
 
-    public StudentErrorResponse(int status, String message, Date date) {
+    public StudentErrorResponse(int status, String message, ZonedDateTime zonedDateTime) {
         this.status = status;
         this.message = message;
-        this.date = date;
+        this.zonedDateTime = zonedDateTime;
     }
 
     public int getStatus() {
@@ -33,11 +33,11 @@ public class StudentErrorResponse {
         this.message = message;
     }
 
-    public Date getDate() {
-        return date;
+    public ZonedDateTime getZonedDateTime() {
+        return zonedDateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setZonedDateTime(ZonedDateTime zonedDateTime) {
+        this.zonedDateTime = zonedDateTime;
     }
 }
