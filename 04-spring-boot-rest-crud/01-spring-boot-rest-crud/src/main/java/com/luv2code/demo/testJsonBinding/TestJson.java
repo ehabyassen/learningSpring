@@ -6,15 +6,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TestJson {
 
     public static void main(String[] args) throws JsonProcessingException {
-        String studentJson = "{\"name\": \"Ehab\", \"age\": 34}";
+        Student student = new Student("Ehab", 34);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Student student = objectMapper.readValue(studentJson, Student.class);
 
-        System.out.println(student);
+        //serialization
+        String studentJSON = objectMapper.writeValueAsString(student);
+        System.out.println(studentJSON);
 
-        String json = objectMapper.writeValueAsString(student);
-
-        System.out.println(json);
+        //deserialization
+        Student deserializedStudent = objectMapper.readValue(studentJSON, Student.class);
+        System.out.println(deserializedStudent);
     }
 }
