@@ -16,7 +16,7 @@ public class EmployeeRestExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<EmployeeErrorResponse> handleException(ResourceNotFoundException exception) {
         EmployeeErrorResponse errorResponse = new EmployeeErrorResponse(HttpStatus.NOT_FOUND.value(),
-                exception.getMessage(), getZonedDateTime());
+                "Employee is not found.", getZonedDateTime());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
