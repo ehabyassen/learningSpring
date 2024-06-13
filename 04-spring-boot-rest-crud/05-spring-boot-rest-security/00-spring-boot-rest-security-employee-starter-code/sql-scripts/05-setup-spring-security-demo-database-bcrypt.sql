@@ -1,4 +1,4 @@
-USE `employee_directory`;
+USE `employees`;
 
 DROP TABLE IF EXISTS `authorities`;
 DROP TABLE IF EXISTS `users`;
@@ -26,7 +26,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` 
 VALUES 
-('john','{bcrypt}$2a$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q',1),
+('john','{bcrypt}$2a$10$WG23/L01fBrHK11.mziHDelVbumygicEEYZ98qXWfJfQedF4tB3Ja',1),
 ('mary','{bcrypt}$2a$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q',1),
 ('susan','{bcrypt}$2a$10$qeS0HEh7urweMojsnwNAR.vcXJeXR1UcMRZ2WcGQl9YeuspUdgF.q',1);
 
