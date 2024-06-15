@@ -3,14 +3,16 @@ package com.luv2code.springboot.thymeleafdemo.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloWorldController {
 
-    @RequestMapping("/showForm")
-    public String showForm(){
+    @GetMapping("/showForm")
+    public String showForm() {
         return "helloWorld-form";
     }
 
@@ -29,9 +31,9 @@ public class HelloWorldController {
         return "helloWorld";
     }
 
-    @RequestMapping("/processFormVersionThree")
+    @PostMapping("/processFormVersionThree")
     public String processForm(@RequestParam String firstName,
-            @RequestParam String lastName, Model model) {
+                              @RequestParam String lastName, Model model) {
         StringBuilder message = new StringBuilder("Hey My Friend! ")
                 .append(firstName)
                 .append(" ")
