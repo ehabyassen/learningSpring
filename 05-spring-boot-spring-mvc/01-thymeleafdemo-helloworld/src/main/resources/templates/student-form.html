@@ -8,10 +8,23 @@
         <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
             <label for="firstName">First name: </label>
             <input type="text" id="firstName" th:field="*{firstName}" />
-            <br/><br/>
+            <br><br>
+
             <label for="firstName">Last name: </label>
             <input type="text" id="lastName" th:field="*{lastName}" />
-            <br/><br/>
+            <br><br>
+
+            <label for="country">Country: </label>
+            <select id="country" th:field="*{country}">
+                <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+            </select>
+            <br><br>
+
+            <label for="lang">Favourite Programming Language: </label>
+                <input id="lang" type="radio" th:field="*{favoriteLanguage}" th:each="tempLang : ${favoriteLanguages}"
+                       th:value="${tempLang}" th:text="${tempLang}" />
+            <br><br>
+
             <input type="submit" value="Submit" />
         </form>
     </body>
