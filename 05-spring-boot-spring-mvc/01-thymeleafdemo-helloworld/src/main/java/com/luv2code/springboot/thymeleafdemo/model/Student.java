@@ -1,12 +1,14 @@
 package com.luv2code.springboot.thymeleafdemo.model;
 
+import java.util.List;
+
 public class Student {
 
     private String firstName;
     private String lastName;
     private String country;
     private String favoriteLanguage;
-    private String favoriteSystem;
+    private List<String> favoriteSystems;
 
     public Student() {
     }
@@ -43,11 +45,11 @@ public class Student {
         this.favoriteLanguage = favoriteLanguage;
     }
 
-    public String getFavoriteSystem() {
-        return favoriteSystem;
+    public List<String> getFavoriteSystems() {
+        return favoriteSystems;
     }
 
-    public void setFavoriteSystem(String favoriteSystem) {
-        this.favoriteSystem = favoriteSystem;
+    public void setFavoriteSystems(List<String> favoriteSystems) {
+        this.favoriteSystems = favoriteSystems;
     }
 }

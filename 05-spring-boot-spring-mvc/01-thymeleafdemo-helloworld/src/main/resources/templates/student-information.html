@@ -11,6 +11,9 @@
         <br>
         <span th:text="'Favorite Programming Language: ' + ${student.favoriteLanguage}"/>
         <br>
-        <span th:text="'Favorite Operating System: ' + ${student.favoriteSystem}"/>
+        <span th:text="'Favorite Operating System: '"/>
+        <ul>
+            <li th:each="tempOs: ${student.favoriteSystems}" th:text="${tempOs}"></li>
+        </ul>
     </body>
 </html>

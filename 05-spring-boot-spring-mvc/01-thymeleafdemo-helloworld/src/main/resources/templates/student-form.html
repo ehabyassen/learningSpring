@@ -26,7 +26,7 @@
             <br><br>
 
             <label for="os">Favorite Operating System: </label>
-                <input id="os" type="checkbox" th:field="*{favoriteSystem}" th:each="tempOs : ${favoriteOs}"
+                <input id="os" type="checkbox" th:field="*{favoriteSystems}" th:each="tempOs : ${favoriteOs}"
                        th:value="${tempOs}" th:text="${tempOs}" />
             <br><br>
 
