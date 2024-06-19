@@ -1,9 +1,6 @@
 package com.luv2code.springdemo.mvc.model;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Customer {
 
@@ -17,8 +14,9 @@ public class Customer {
     @Max(value = 10, message = "max is 10")
     private int freePasses;
 
-    public Customer() {
-    }
+    @NotNull(message = "is required")
+    @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "postal code can only be 5 chars/digits")
+    private String postalCode;
 
     public String getFirstName() {
         return firstName;
@@ -42,5 +40,13 @@ public class Customer {
 
     public void setFreePasses(int freePasses) {
         this.freePasses = freePasses;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 }
