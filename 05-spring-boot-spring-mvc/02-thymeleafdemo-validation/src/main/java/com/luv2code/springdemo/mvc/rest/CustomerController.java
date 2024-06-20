@@ -23,6 +23,7 @@ public class CustomerController {
 
     @PostMapping("/processCustomerForm")
     public String processCustomerForm(@Valid @ModelAttribute Customer customer, BindingResult result) {
+        System.out.println("Binding result: " + result.toString());
         if (result.hasErrors()) {
             return "customer-form";
         } else {
