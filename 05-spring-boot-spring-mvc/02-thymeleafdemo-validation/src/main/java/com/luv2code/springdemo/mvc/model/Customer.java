@@ -1,6 +1,6 @@
 package com.luv2code.springdemo.mvc.model;
 
-import com.luv2code.springdemo.mvc.annotation.CourseCode;
+import com.luv2code.springdemo.mvc.validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {

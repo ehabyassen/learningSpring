@@ -1,6 +1,5 @@
-package com.luv2code.springdemo.mvc.annotation;
+package com.luv2code.springdemo.mvc.validation;
 
-import com.luv2code.springdemo.mvc.validator.CourseCodeConstraintValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
