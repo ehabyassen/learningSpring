@@ -44,7 +44,7 @@ public class EmployeeRestController {
         return "employees/addEmployeeForm";
     }
 
-    @GetMapping("processDeleteEmployee")
+    @GetMapping("/processDeleteEmployee")
     public String processDeleteEmployee(@RequestParam int employeeId) {
         employeeService.delete(employeeId);
         return "redirect:/employees/list";
