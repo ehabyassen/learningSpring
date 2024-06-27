@@ -10,4 +10,19 @@ public class DemoController {
     public String showHome() {
         return "home";
     }
+
+    @GetMapping("/leaders")
+    public String showLeadersPage() {
+        return "leaders";
+    }
+
+    @GetMapping("/systems")
+    public String showSystemsPage() {
+        return "systems";
+    }
+
+    @GetMapping("/error")
+    public String showErrorPage() {
+        return "error";
+    }
 }

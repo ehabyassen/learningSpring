@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaders</title>
+</head>
+<body>
+    <h2>Leadership Retreat Page.</h2>
+    <hr>
+    <p>User: <span sec:authentication="principal.username" /></p>
+    <p>Role(s): <span sec:authentication="principal.authorities" /></p>
+    <a th:href="@{/}">Back to home page</a>
+</body>
+</html>
