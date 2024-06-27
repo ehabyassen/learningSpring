@@ -21,8 +21,8 @@ public class DemoController {
         return "systems";
     }
 
-    @GetMapping("/error")
-    public String showErrorPage() {
-        return "error";
+    @GetMapping("/access-denied")
+    public String showAccessDeniedPage() {
+        return "access-denied";
     }
 }
