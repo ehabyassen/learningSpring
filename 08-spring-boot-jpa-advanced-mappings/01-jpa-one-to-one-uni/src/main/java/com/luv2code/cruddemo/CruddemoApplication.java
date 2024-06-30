@@ -39,7 +39,7 @@ public class CruddemoApplication {
 	}
 
 	private void findInstructor(int id, InstructorRepository repository) {
-		System.out.println("Finding instrudctor by id: [" + id + "]");
+		System.out.println("Finding instructor by id: [" + id + "]");
 
 		System.out.println("Found instructor: " + repository.findById(id));
 	}
