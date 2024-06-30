@@ -26,7 +26,11 @@ public class CruddemoApplication {
 			//deleteInstructor(2, repository);
 			//System.out.println("#".repeat(50));
 			//findAllInstructors(repository);
-			findInstructorDetail(1, repository);
+			//findInstructorDetail(1, repository);
+			findAllInstructorDetails(repository);
+			System.out.println("#".repeat(50));
+			deleteInstructorDetailById(3, repository);
+			findAllInstructorDetails(repository);
 		};
 	}
 
@@ -39,7 +43,7 @@ public class CruddemoApplication {
 
 		System.out.println("Saving instructor: " + instructor);
 
-		repository.save(instructor);
+		repository.saveInstructor(instructor);
 
 		System.out.println("Saved instructor: " + instructor);
 	}
@@ -47,15 +51,15 @@ public class CruddemoApplication {
 	private void findInstructor(int id, Repository repository) {
 		System.out.println("Finding instructor by id: [" + id + "]");
 
-		System.out.println("Found instructor: " + repository.findById(id));
+		System.out.println("Found instructor: " + repository.findInstructorById(id));
 	}
 
 	private void findAllInstructors(Repository repository) {
-		repository.findAll().forEach(System.out::println);
+		repository.findAllInstructors().forEach(System.out::println);
 	}
 
 	private void deleteInstructor(int id, Repository repository) {
-		repository.deleteById(id);
+		repository.deleteInstructorById(id);
 	}
 
 	private void findInstructorDetail(int id, Repository repository) {
@@ -63,5 +67,16 @@ public class CruddemoApplication {
 		InstructorDetail instructorDetail = repository.findInstructorDetailById(1);
 		System.out.println("Found Instructor Detail: " + instructorDetail);
 		System.out.println("Found Instructor: " + instructorDetail.getInstructor());
+	}
+
+	private void findAllInstructorDetails(Repository repository) {
+		repository.findAllInstructorDetails().forEach(instructorDetail -> {
+			System.out.println(instructorDetail);
+			System.out.println(instructorDetail.getInstructor());
+		});
+	}
+
+	private void deleteInstructorDetailById(int id, Repository repository) {
+		repository.deleteInstructorDetailById(id);
 	}
 }

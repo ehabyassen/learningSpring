@@ -21,29 +21,44 @@ public class MySQLRepository implements Repository {
 
     @Override
     @Transactional
-    public void save(Instructor instructor) {
+    public void saveInstructor(Instructor instructor) {
         entityManager.persist(instructor);
     }
 
     @Override
-    public Instructor findById(int id) {
+    public Instructor findInstructorById(int id) {
         return entityManager.find(Instructor.class, id);
     }
 
     @Override
-    public List<Instructor> findAll() {
+    public List<Instructor> findAllInstructors() {
         TypedQuery<Instructor> query = entityManager.createQuery("FROM Instructor", Instructor.class);
         return query.getResultList();
     }
 
     @Override
     @Transactional
-    public void deleteById(int id) {
-        entityManager.remove(findById(id));
+    public void deleteInstructorById(int id) {
+        entityManager.remove(findInstructorById(id));
     }
 
     @Override
     public InstructorDetail findInstructorDetailById(int id) {
         return entityManager.find(InstructorDetail.class, id);
+    }
+
+    @Override
+    public List<InstructorDetail> findAllInstructorDetails() {
+        TypedQuery<InstructorDetail> query = entityManager.createQuery("FROM InstructorDetail", InstructorDetail.class);
+        return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorDetailById(int id) {
+        InstructorDetail instructorDetail = findInstructorDetailById(id);
+        //break the bidirectional link from the constructor record
+        instructorDetail.getInstructor().setInstructorDetail(null);
+        entityManager.remove(instructorDetail);
     }
 }

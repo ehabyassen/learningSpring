@@ -7,13 +7,17 @@ import java.util.List;
 
 public interface Repository {
 
-    void save(Instructor instructor);
+    void saveInstructor(Instructor instructor);
 
-    Instructor findById(int id);
+    Instructor findInstructorById(int id);
 
-    List<Instructor> findAll();
+    List<Instructor> findAllInstructors();
 
-    void deleteById(int id);
+    void deleteInstructorById(int id);
 
     InstructorDetail findInstructorDetailById(int id);
+
+    List<InstructorDetail> findAllInstructorDetails();
+
+    void deleteInstructorDetailById(int id);
 }
