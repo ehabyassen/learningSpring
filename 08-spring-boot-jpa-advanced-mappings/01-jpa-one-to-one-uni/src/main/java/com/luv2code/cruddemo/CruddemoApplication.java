@@ -18,7 +18,9 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(InstructorRepository repository) {
 		return runner -> {
-			createInstructor(repository);
+			//createInstructor(repository);
+			findInstructor(1, repository);
+			findInstructor(2, repository);
 		};
 	}
 
@@ -34,5 +36,11 @@ public class CruddemoApplication {
 		repository.save(instructor);
 
 		System.out.println("Saved instructor: " + instructor);
+	}
+
+	private void findInstructor(int id, InstructorRepository repository) {
+		System.out.println("Finding instrudctor by id: [" + id + "]");
+
+		System.out.println("Found instructor: " + repository.findById(id));
 	}
 }
