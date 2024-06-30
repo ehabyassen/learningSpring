@@ -19,8 +19,13 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(InstructorRepository repository) {
 		return runner -> {
 			//createInstructor(repository);
-			findInstructor(1, repository);
-			findInstructor(2, repository);
+			//findInstructor(1, repository);
+			//findInstructor(2, repository);
+			findAllInstructors(repository);
+			System.out.println("#".repeat(50));
+			deleteInstructor(2, repository);
+			System.out.println("#".repeat(50));
+			findAllInstructors(repository);
 		};
 	}
 
@@ -42,5 +47,13 @@ public class CruddemoApplication {
 		System.out.println("Finding instructor by id: [" + id + "]");
 
 		System.out.println("Found instructor: " + repository.findById(id));
+	}
+
+	private void findAllInstructors(InstructorRepository repository) {
+		repository.findAll().forEach(System.out::println);
+	}
+
+	private void deleteInstructor(int id, InstructorRepository repository) {
+		repository.deleteById(id);
 	}
 }
