@@ -1,5 +1,6 @@
 package com.luv2code.cruddemo.repository;
 
+import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
@@ -60,5 +61,12 @@ public class MySQLRepository implements Repository {
         //break the bidirectional link from the constructor record
         instructorDetail.getInstructor().setInstructorDetail(null);
         entityManager.remove(instructorDetail);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int id) {
+        TypedQuery<Course> query = entityManager.createQuery("FROM Course WHERE instructor.id = :id", Course.class);
+        query.setParameter("id", id);
+        return query.getResultList();
     }
 }

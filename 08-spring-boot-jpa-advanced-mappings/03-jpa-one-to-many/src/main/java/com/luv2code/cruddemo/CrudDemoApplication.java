@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
 import java.util.List;
 
 @SpringBootApplication
-public class CruddemoApplication {
+public class CrudDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CruddemoApplication.class, args);
+		SpringApplication.run(CrudDemoApplication.class, args);
 	}
 
 	@Bean
@@ -35,7 +35,8 @@ public class CruddemoApplication {
 			//deleteInstructorDetailById(3, repository);
 			//findAllInstructorDetails(repository);
 			//createInstructorWithCourses(repository);
-			findInstructorWithCourses(repository);
+			//findInstructorWithCourses(repository);
+			findCoursesForInstructor(repository);
 		};
 	}
 
@@ -102,6 +103,16 @@ public class CruddemoApplication {
 	private void findInstructorWithCourses(Repository repository) {
 		Instructor instructor = repository.findInstructorById(1);
 		System.out.println(instructor);
+		System.out.println(instructor.getCourses());
+	}
+
+	private void findCoursesForInstructor(Repository repository) {
+		Instructor instructor = repository.findInstructorById(1);
+		System.out.println(instructor);
+
+		List<Course> courses = repository.findCoursesByInstructorId(instructor.getId());
+		instructor.setCourses(courses);
+
 		System.out.println(instructor.getCourses());
 	}
 }

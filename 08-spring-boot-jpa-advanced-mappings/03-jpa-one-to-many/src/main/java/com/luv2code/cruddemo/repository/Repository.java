@@ -1,5 +1,6 @@
 package com.luv2code.cruddemo.repository;
 
+import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
 
@@ -20,4 +21,6 @@ public interface Repository {
     List<InstructorDetail> findAllInstructorDetails();
 
     void deleteInstructorDetailById(int id);
+
+    List<Course> findCoursesByInstructorId(int id);
 }
