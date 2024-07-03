@@ -34,7 +34,8 @@ public class CruddemoApplication {
 			//System.out.println("#".repeat(50));
 			//deleteInstructorDetailById(3, repository);
 			//findAllInstructorDetails(repository);
-			createInstructorWithCourses(repository);
+			//createInstructorWithCourses(repository);
+			findInstructorWithCourses(repository);
 		};
 	}
 
@@ -96,5 +97,11 @@ public class CruddemoApplication {
 		System.out.println("with Courses: " + instructor.getCourses());
 
 		repository.saveInstructor(instructor);
+	}
+
+	private void findInstructorWithCourses(Repository repository) {
+		Instructor instructor = repository.findInstructorById(1);
+		System.out.println(instructor);
+		System.out.println(instructor.getCourses());
 	}
 }
