@@ -38,7 +38,8 @@ public class CrudDemoApplication {
 			//findInstructorWithCourses(repository);
 			//findCoursesForInstructor(repository);
 			//findInstructorWithCoursesJoinFetch(repository);
-			updateInstructor(repository);
+			//updateInstructor(repository);
+			updateCourse(repository);
 		};
 	}
 
@@ -131,5 +132,14 @@ public class CrudDemoApplication {
 		repository.updateInstructor(instructor);
 		instructor = repository.findInstructorById(1);
 		System.out.println(instructor);
+	}
+
+	private void updateCourse(Repository repository) {
+		Course course = repository.findCourseById(12);
+		System.out.println(course);
+		course.setTitle("Chemistry");
+		repository.updateCourse(course);
+		course = repository.findCourseById(12);
+		System.out.println(course);
 	}
 }

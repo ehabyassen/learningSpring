@@ -28,4 +28,8 @@ public interface Repository {
 
     void updateInstructor(Instructor instructor);
 
+    Course findCourseById(int id);
+
+    void updateCourse(Course course);
+
 }
