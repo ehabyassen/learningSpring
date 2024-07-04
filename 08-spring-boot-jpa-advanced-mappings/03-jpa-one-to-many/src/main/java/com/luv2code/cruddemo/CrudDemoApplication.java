@@ -26,7 +26,7 @@ public class CrudDemoApplication {
 			//findInstructor(2, repository);
 			//findAllInstructors(repository);
 			//System.out.println("#".repeat(50));
-			//deleteInstructor(2, repository);
+			//deleteInstructor(repository);
 			//System.out.println("#".repeat(50));
 			//findAllInstructors(repository);
 			//findInstructorDetail(1, repository);
@@ -39,7 +39,8 @@ public class CrudDemoApplication {
 			//findCoursesForInstructor(repository);
 			//findInstructorWithCoursesJoinFetch(repository);
 			//updateInstructor(repository);
-			updateCourse(repository);
+			//updateCourse(repository);
+			deleteCourse(repository);
 		};
 	}
 
@@ -67,8 +68,8 @@ public class CrudDemoApplication {
 		repository.findAllInstructors().forEach(System.out::println);
 	}
 
-	private void deleteInstructor(int id, Repository repository) {
-		repository.deleteInstructorById(id);
+	private void deleteInstructor(Repository repository) {
+		repository.deleteInstructorById(1);
 	}
 
 	private void findInstructorDetail(int id, Repository repository) {
@@ -141,5 +142,9 @@ public class CrudDemoApplication {
 		repository.updateCourse(course);
 		course = repository.findCourseById(12);
 		System.out.println(course);
+	}
+
+	private void deleteCourse(Repository repository) {
+		repository.deleteCourseById(12);
 	}
 }

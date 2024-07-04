@@ -40,7 +40,9 @@ public class MySQLRepository implements Repository {
     @Override
     @Transactional
     public void deleteInstructorById(int id) {
-        entityManager.remove(findInstructorById(id));
+        Instructor instructor = findInstructorById(id);
+        instructor.getCourses().forEach(course -> course.setInstructor(null));
+        entityManager.remove(instructor);
     }
 
     @Override
@@ -97,5 +99,11 @@ public class MySQLRepository implements Repository {
     @Transactional
     public void updateCourse(Course course) {
         entityManager.merge(course);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseById(int id) {
+        entityManager.remove(findCourseById(id));
     }
 }
