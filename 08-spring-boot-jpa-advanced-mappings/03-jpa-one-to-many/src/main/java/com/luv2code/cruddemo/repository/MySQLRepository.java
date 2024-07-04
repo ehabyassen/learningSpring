@@ -69,4 +69,13 @@ public class MySQLRepository implements Repository {
         query.setParameter("id", id);
         return query.getResultList();
     }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int id) {
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                "SELECT i FROM Instructor i JOIN FETCH i.courses where i.id = :id",
+                Instructor.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }
