@@ -37,7 +37,8 @@ public class CrudDemoApplication {
 			//createInstructorWithCourses(repository);
 			//findInstructorWithCourses(repository);
 			//findCoursesForInstructor(repository);
-			findInstructorWithCoursesJoinFetch(repository);
+			//findInstructorWithCoursesJoinFetch(repository);
+			updateInstructor(repository);
 		};
 	}
 
@@ -121,5 +122,14 @@ public class CrudDemoApplication {
 		Instructor instructor = repository.findInstructorByIdJoinFetch(1);
 		System.out.println(instructor);
 		System.out.println(instructor.getCourses());
+	}
+
+	private void updateInstructor(Repository repository) {
+		Instructor instructor = repository.findInstructorById(1);
+		System.out.println(instructor);
+		instructor.setLastName("Doe");
+		repository.updateInstructor(instructor);
+		instructor = repository.findInstructorById(1);
+		System.out.println(instructor);
 	}
 }

@@ -81,4 +81,10 @@ public class MySQLRepository implements Repository {
         query.setParameter("id", id);
         return query.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void updateInstructor(Instructor instructor) {
+        entityManager.merge(instructor);
+    }
 }

@@ -25,4 +25,7 @@ public interface Repository {
     List<Course> findCoursesByInstructorId(int id);
 
     Instructor findInstructorByIdJoinFetch(int id);
+
+    void updateInstructor(Instructor instructor);
+
 }
