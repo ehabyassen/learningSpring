@@ -12,6 +12,10 @@
     <h3>Branches</h3>
     <hr>
     <a th:href="@{/branches/showAddBranchForm}" class="btn btn-primary btn-sm mb-3">Add Branch</a>
+    <div th:if="${deleteBranchHasEmployeesError}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p th:text="${deleteBranchHasEmployeesError}"></p>
+        <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
@@ -37,5 +41,6 @@
     <hr>
     <a th:href="@{/employees/list}" style="text-decoration: none;">Go to Employees List</a>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

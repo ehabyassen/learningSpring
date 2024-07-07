@@ -5,6 +5,7 @@ import com.itranks.employees.entity.Employee;
 import com.itranks.employees.service.BranchService;
 import com.itranks.employees.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +60,16 @@ public class BranchController {
     }
 
     @GetMapping("/processDeleteBranch")
-    public String processDeleteBranch(@RequestParam int branchId) {
-        branchService.deleteBranch(branchId);
-        return "redirect:/branches/list";
+    public String processDeleteBranch(@RequestParam int branchId, Model model) {
+        try {
+            branchService.deleteBranch(branchId);
+            return "redirect:/branches/list";
+        } catch (DataIntegrityViolationException e) {
+            List<Branch> branches = branchService.findAllBranches();
+            model.addAttribute("branches", branches);
+            model.addAttribute("deleteBranchHasEmployeesError",
+                    "Cannot delete a branch with associated employees.");
+            return "/branches/listBranches";
+        }
     }
 }
