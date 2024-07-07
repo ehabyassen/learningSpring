@@ -1,6 +1,8 @@
 package com.itranks.employees.service;
 
+import com.itranks.employees.entity.Branch;
 import com.itranks.employees.entity.Employee;
+import com.itranks.employees.repository.BranchRepository;
 import com.itranks.employees.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +15,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
+    private final BranchRepository branchRepository;
+
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, BranchRepository branchRepository) {
         this.employeeRepository = employeeRepository;
+        this.branchRepository = branchRepository;
     }
 
     @Override
     @Transactional
     public void saveEmployee(Employee employee) {
         if (employee.getId() == 0) {
+            int branchId = employee.getBranch().getId();
+            employee.setBranch(null);
             employeeRepository.saveEmployee(employee);
+
+            Branch branch = branchRepository.findBranch(branchId);
+            employee.setBranch(branch);
+
+            employeeRepository.updateEmployee(employee);
         } else {
+            int branchId = employee.getBranch().getId();
+
+            Branch branch = branchRepository.findBranch(branchId);
+            employee.setBranch(branch);
+
             employeeRepository.updateEmployee(employee);
         }
     }

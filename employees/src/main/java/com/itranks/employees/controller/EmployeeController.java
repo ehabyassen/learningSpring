@@ -42,9 +42,6 @@ public class EmployeeController {
 
     @PostMapping("/processAddEmployeeForm")
     public String processAddEmployeeForm(@ModelAttribute Employee employee) {
-        int branchId = employee.getBranch().getId();
-        Branch branch = branchService.findBranch(branchId);
-        employee.setBranch(branch);
         employeeService.saveEmployee(employee);
         return "redirect:/employees/list";
     }
