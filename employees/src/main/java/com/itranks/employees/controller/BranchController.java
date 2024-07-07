@@ -1,7 +1,9 @@
 package com.itranks.employees.controller;
 
 import com.itranks.employees.entity.Branch;
+import com.itranks.employees.entity.Employee;
 import com.itranks.employees.service.BranchService;
+import com.itranks.employees.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,12 @@ public class BranchController {
 
     private final BranchService branchService;
 
+    private final EmployeeService employeeService;
+
     @Autowired
-    public BranchController(BranchService branchService) {
+    public BranchController(BranchService branchService, EmployeeService employeeService) {
         this.branchService = branchService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/list")
@@ -25,6 +30,13 @@ public class BranchController {
         List<Branch> branches = branchService.findAllBranches();
         model.addAttribute("branches", branches);
         return "branches/listBranches";
+    }
+
+    @GetMapping("/listBranchEmployees")
+    public String listBranchEmployees(@RequestParam int branchId, Model model) {
+        List<Employee> employees = employeeService.findEmployeesByBranchId(branchId);
+        model.addAttribute("employees", employees);
+        return "employees/listEmployees";
     }
 
     @GetMapping("/showAddBranchForm")

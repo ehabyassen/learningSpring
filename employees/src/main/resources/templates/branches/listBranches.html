@@ -22,12 +22,14 @@
         <tbody>
         <tr th:each="branch : ${branches}">
             <td th:text="${branch.name}" />
-            <td class="col-md-2 text-center">
+            <td class="col-md-4 text-center">
                 <a th:href="@{/branches/showUpdateBranchForm(branchId=${branch.id})}"
-                   class="btn btn-info btn-sm col-4">Update</a>
+                   class="btn btn-info btn-sm col-3">Update</a>
                 <a th:href="@{/branches/processDeleteBranch(branchId=${branch.id})}"
-                   class="btn btn-danger btn-sm col-4"
+                   class="btn btn-danger btn-sm col-3"
                    onclick="if (! (confirm('Are you sure you want to delete this branch?'))) return false">Delete</a>
+                <a th:href="@{/branches/listBranchEmployees(branchId=${branch.id})}"
+                   class="btn btn-link btn-sm col-4">List Employees</a>
             </td>
         </tr>
         </tbody>
