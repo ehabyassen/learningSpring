@@ -21,18 +21,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void saveEmployee(Employee employee) {
-        employeeRepository.saveEmployee(employee);
+        if (employee.getId() == 0) {
+            employeeRepository.saveEmployee(employee);
+        } else {
+            employeeRepository.updateEmployee(employee);
+        }
     }
 
     @Override
     public Employee findEmployee(int id) {
         return employeeRepository.findEmployee(id);
-    }
-
-    @Override
-    @Transactional
-    public void updateEmployee(Employee employee) {
-        employeeRepository.updateEmployee(employee);
     }
 
     @Override

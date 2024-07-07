@@ -21,18 +21,16 @@ public class BranchServiceImpl implements BranchService {
     @Override
     @Transactional
     public void saveBranch(Branch branch) {
-        branchRepository.saveBranch(branch);
+        if (branch.getId() == 0) {
+            branchRepository.saveBranch(branch);
+        } else {
+            branchRepository.updateBranch(branch);
+        }
     }
 
     @Override
     public Branch findBranch(int id) {
         return branchRepository.findBranch(id);
-    }
-
-    @Override
-    @Transactional
-    public void updateBranch(Branch branch) {
-        branchRepository.updateBranch(branch);
     }
 
     @Override

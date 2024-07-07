@@ -10,8 +10,6 @@ public interface EmployeeService {
 
     Employee findEmployee(int id);
 
-    void updateEmployee(Employee employee);
-
     void deleteEmployee(int id);
 
     List<Employee> findAllEmployees();

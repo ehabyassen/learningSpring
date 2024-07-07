@@ -17,7 +17,7 @@
         <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 w-25" />
         <input type="text" th:field="*{nationalId}" placeholder="National Id" class="form-control mb-4 w-25" />
         <input type="text" th:field="*{age}" placeholder="Age" class="form-control mb-4 w-25" />
-        <select th:object="${branches}" class="form-control mb-4 w-25">
+        <select th:field="*{branch.id}" class="form-control mb-4 w-25">
             <option th:each="branch : ${branches}" th:value="${branch.id}" th:text="${branch.name}" />
         </select>
         <input type="submit" value="Save" class="btn btn-info col-2" />

@@ -10,8 +10,6 @@ public interface BranchService {
 
     Branch findBranch(int id);
 
-    void updateBranch(Branch branch);
-
     void deleteBranch(int id);
 
     List<Branch> findAllBranches();
