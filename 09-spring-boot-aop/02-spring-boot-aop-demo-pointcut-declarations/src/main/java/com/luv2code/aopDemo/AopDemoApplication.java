@@ -25,6 +25,8 @@ public class AopDemoApplication {
 
 	private void demoBeforeAdvice(AccountRepository accountRepository, MembershipRepository membershipRepository) {
 		accountRepository.addAccount();
-		boolean added = membershipRepository.addMembershipAccount(new Account(), true, "x1234", new Trainer());
+		accountRepository.getAccount();
+		accountRepository.setAccount();
+		membershipRepository.addMembershipAccount(new Account(), true, "x1234", new Trainer());
 	}
 }

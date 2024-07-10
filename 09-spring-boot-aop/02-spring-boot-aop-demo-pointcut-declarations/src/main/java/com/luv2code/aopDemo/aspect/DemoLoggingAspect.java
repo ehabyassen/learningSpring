@@ -9,13 +9,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoLoggingAspect {
 
-    @Pointcut("execution(* com.luv2code.aopDemo.repository.*.*(..)")
-    private void daoPackageAdvice() {
-        System.out.println(getClass() + ": logging info before any method in the declared package...");
-    }
+    @Pointcut("execution(* com.luv2code.aopDemo.repository.*.*(..))")
+    private void forRepositoryPackage() {}
 
-    @Before("daoPackageAdvice()")
-    public void beforeAddAccountAdvice() {
-        
+    @Pointcut("execution(* com.luv2code.aopDemo.repository.*.get*(..))")
+    private void getters() {}
+
+    @Pointcut("execution(* com.luv2code.aopDemo.repository.*.set*(..))")
+    private void setters() {}
+
+    @Pointcut("forRepositoryPackage() && !(getters() || setters())")
+    private void forRepositoryPackageMethodsExcludingGettersAndSetters() {}
+
+    @Before("forRepositoryPackageMethodsExcludingGettersAndSetters()")
+    public void beforeAnyMethodAdvice() {
+        System.out.println(getClass() + ": logging info before executing any method in the declared package except excluded methods...");
     }
 }
