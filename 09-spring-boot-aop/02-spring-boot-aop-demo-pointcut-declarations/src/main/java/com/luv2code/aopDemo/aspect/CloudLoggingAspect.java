@@ -6,12 +6,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Order(1)
+@Order(3)
 @Component
-public class DemoLoggingAspect {
+public class CloudLoggingAspect {
 
     @Before("com.luv2code.aopDemo.aspect.AopExpressions.forRepositoryPackageMethodsExcludingGettersAndSetters()")
-    public void beforeAddAccountAdvice() {
-        System.out.println(getClass() + ": logging info before addAccount...1");
+    public void logToCloudAdvice() {
+        System.out.println(getClass() + ": logging to cloud...3");
     }
 }

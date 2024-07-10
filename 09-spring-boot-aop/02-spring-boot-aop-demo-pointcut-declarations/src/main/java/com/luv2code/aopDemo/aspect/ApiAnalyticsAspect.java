@@ -6,12 +6,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Order(1)
+@Order(2)
 @Component
-public class DemoLoggingAspect {
+public class ApiAnalyticsAspect {
 
     @Before("com.luv2code.aopDemo.aspect.AopExpressions.forRepositoryPackageMethodsExcludingGettersAndSetters()")
-    public void beforeAddAccountAdvice() {
-        System.out.println(getClass() + ": logging info before addAccount...1");
+    public void performSomeApiAnalyticsAdvice() {
+        System.out.println(getClass() + ": performing some api analytics...2");
     }
 }
