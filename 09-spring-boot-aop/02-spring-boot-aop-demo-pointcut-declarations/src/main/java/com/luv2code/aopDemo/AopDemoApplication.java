@@ -1,13 +1,14 @@
 package com.luv2code.aopDemo;
 
 import com.luv2code.aopDemo.entity.Account;
-import com.luv2code.aopDemo.entity.Trainer;
 import com.luv2code.aopDemo.repository.AccountRepository;
 import com.luv2code.aopDemo.repository.MembershipRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class AopDemoApplication {
@@ -19,7 +20,8 @@ public class AopDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountRepository accountRepository, MembershipRepository membershipRepository) {
 		return runner -> {
-			demoBeforeAdvice(accountRepository, membershipRepository);
+			//demoBeforeAdvice(accountRepository, membershipRepository);
+			demoAfterReturningAdvice(accountRepository);
 		};
 	}
 
@@ -27,6 +29,11 @@ public class AopDemoApplication {
 		accountRepository.addAccount();
 		accountRepository.getAccount();
 		accountRepository.setAccount();
-		membershipRepository.addMembershipAccount(new Account(), true, "x1234", new Trainer());
+		membershipRepository.addMembershipAccount(new Account("John", "Platinum"), true, "x1234");
+	}
+
+	private void demoAfterReturningAdvice(AccountRepository accountRepository) {
+		List<Account> accounts = accountRepository.findAccounts();
+		System.out.println(accounts);
 	}
 }
