@@ -2,6 +2,7 @@ package com.luv2code.aopDemo.aspect;
 
 import com.luv2code.aopDemo.entity.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -49,5 +50,22 @@ public class DemoLoggingAspect {
     public void afterFindAccountsAdvice(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         System.out.println("After Method Signature: " + signature);
+    }
+
+    @Around("execution(* com.luv2code.aopDemo.service.TrafficFortuneService.getFortune(..))")
+    public Object aroundGetFortuneAdvice(ProceedingJoinPoint joinPoint) {
+        System.out.println("Before calling getFortune()...");
+        long before = System.currentTimeMillis();
+        try {
+            return joinPoint.proceed();
+        } catch (Throwable e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println("After calling getFortune()...");
+            long after = System.currentTimeMillis();
+            long duration = after - before;
+            System.out.println("Around Advice Method getFortune() Duration: " + duration + " ms");
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.luv2code.aopDemo;
 import com.luv2code.aopDemo.entity.Account;
 import com.luv2code.aopDemo.repository.AccountRepository;
 import com.luv2code.aopDemo.repository.MembershipRepository;
+import com.luv2code.aopDemo.service.TrafficFortuneService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,12 +19,17 @@ public class AopDemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountRepository accountRepository, MembershipRepository membershipRepository) {
+	public CommandLineRunner commandLineRunner(AccountRepository accountRepository,
+											   MembershipRepository membershipRepository,
+											   TrafficFortuneService trafficFortuneService) {
 		return runner -> {
 			//demoBeforeAdvice(accountRepository, membershipRepository);
 			//demoAfterReturningAdvice(accountRepository);
 			//demoAfterThrowingAdvice(accountRepository);
-			demoAfterAdvice(accountRepository);
+			//demoAfterAdvice(accountRepository);
+			//demoAroundAdvice(trafficFortuneService);
+			//demoAroundAdviceHandleException(trafficFortuneService);
+			demoAroundAdviceRethrowException(trafficFortuneService);
 		};
 	}
 
@@ -57,5 +63,20 @@ public class AopDemoApplication {
 		} catch (Exception e) {
 			System.out.println("Caught Exception in After Advice Demo: " + e.getMessage());
 		}
+	}
+
+	private void demoAroundAdvice(TrafficFortuneService trafficFortuneService) {
+		System.out.println("Calling getFortune()...");
+		System.out.println("Fortune: " + trafficFortuneService.getFortune(false));
+	}
+
+	private void demoAroundAdviceHandleException(TrafficFortuneService trafficFortuneService) {
+		System.out.println("Calling getFortune()...");
+		System.out.println("Fortune: " + trafficFortuneService.getFortune(true));
+	}
+
+	private void demoAroundAdviceRethrowException(TrafficFortuneService trafficFortuneService) {
+		System.out.println("Calling getFortune()...");
+		System.out.println("Fortune: " + trafficFortuneService.getFortune(true));
 	}
 }
