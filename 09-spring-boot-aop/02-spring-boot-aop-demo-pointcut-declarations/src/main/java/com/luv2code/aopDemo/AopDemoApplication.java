@@ -21,7 +21,8 @@ public class AopDemoApplication {
 	public CommandLineRunner commandLineRunner(AccountRepository accountRepository, MembershipRepository membershipRepository) {
 		return runner -> {
 			//demoBeforeAdvice(accountRepository, membershipRepository);
-			demoAfterReturningAdvice(accountRepository);
+			//demoAfterReturningAdvice(accountRepository);
+			demoAfterThrowingAdvice(accountRepository);
 		};
 	}
 
@@ -33,7 +34,15 @@ public class AopDemoApplication {
 	}
 
 	private void demoAfterReturningAdvice(AccountRepository accountRepository) {
-		List<Account> accounts = accountRepository.findAccounts();
+		List<Account> accounts = accountRepository.findAccounts(false);
 		System.out.println(accounts);
+	}
+
+	private void demoAfterThrowingAdvice(AccountRepository accountRepository) {
+		try {
+			List<Account> accounts = accountRepository.findAccounts(true);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.getMessage());
+		}
 	}
 }

@@ -12,5 +12,5 @@ public interface AccountRepository {
 
     void setAccount();
 
-    List<Account> findAccounts();
+    List<Account> findAccounts(boolean tripWire) throws RuntimeException;
 }

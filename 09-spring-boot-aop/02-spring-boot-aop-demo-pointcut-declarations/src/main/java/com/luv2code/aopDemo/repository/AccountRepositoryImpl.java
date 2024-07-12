@@ -3,6 +3,7 @@ package com.luv2code.aopDemo.repository;
 import com.luv2code.aopDemo.entity.Account;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,7 +26,14 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public List<Account> findAccounts() {
-        return List.of(new Account("Sophie", "Advance"), new Account("Aisha", "Platinum"));
+    public List<Account> findAccounts(boolean tripWire) throws RuntimeException {
+        if (tripWire) {
+            throw new RuntimeException("Test Exception!");
+        } else {
+            List<Account> accounts = new ArrayList<>();
+            accounts.add(new Account("Sophie", "Advance"));
+            accounts.add(new Account("Dia", "Platinum"));
+            return accounts;
+        }
     }
 }

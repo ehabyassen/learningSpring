@@ -3,6 +3,7 @@ package com.luv2code.aopDemo.aspect;
 import com.luv2code.aopDemo.entity.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -25,7 +26,7 @@ public class DemoLoggingAspect {
             System.out.println("Before Method Argument: " + arg);
         }
 
-        System.out.println(getClass() + ": logging info before addAccount...1");
+        System.out.println(getClass() + ": logging info before...1");
     }
 
     @AfterReturning(
@@ -34,6 +35,16 @@ public class DemoLoggingAspect {
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         System.out.println("After Method Signature: " + signature);
+
+        result.forEach(account -> account.setName(account.getName().toUpperCase()));
+
         System.out.println("After Method Result: " + result);
+    }
+
+    @AfterThrowing(
+            pointcut = "execution(* com.luv2code.aopDemo.repository.AccountRepository.findAccounts(..))",
+            throwing = "exception")
+    public void afterThrowingFindAccountsAdvice(Throwable exception) {
+        System.out.println("After Throwing Exception: " + exception.getMessage());
     }
 }

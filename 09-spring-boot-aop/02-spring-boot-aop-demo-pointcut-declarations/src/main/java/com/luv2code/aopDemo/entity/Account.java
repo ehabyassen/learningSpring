@@ -2,8 +2,8 @@ package com.luv2code.aopDemo.entity;
 
 public class Account {
 
-    private final String name;
-    private final String type;
+    private String name;
+    private String type;
 
     public Account(String name, String type) {
         this.name = name;
@@ -14,8 +14,16 @@ public class Account {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
