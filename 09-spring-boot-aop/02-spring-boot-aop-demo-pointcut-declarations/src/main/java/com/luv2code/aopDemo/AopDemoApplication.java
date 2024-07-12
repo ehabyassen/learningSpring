@@ -22,7 +22,8 @@ public class AopDemoApplication {
 		return runner -> {
 			//demoBeforeAdvice(accountRepository, membershipRepository);
 			//demoAfterReturningAdvice(accountRepository);
-			demoAfterThrowingAdvice(accountRepository);
+			//demoAfterThrowingAdvice(accountRepository);
+			demoAfterAdvice(accountRepository);
 		};
 	}
 
@@ -43,6 +44,18 @@ public class AopDemoApplication {
 			List<Account> accounts = accountRepository.findAccounts(true);
 		} catch (Exception e) {
 			System.out.println("Caught exception: " + e.getMessage());
+		}
+	}
+
+	private void demoAfterAdvice(AccountRepository accountRepository) {
+		accountRepository.findAccounts(false);
+
+		System.out.println("#".repeat(50));
+
+		try {
+			accountRepository.findAccounts(true);
+		} catch (Exception e) {
+			System.out.println("Caught Exception in After Advice Demo: " + e.getMessage());
 		}
 	}
 }

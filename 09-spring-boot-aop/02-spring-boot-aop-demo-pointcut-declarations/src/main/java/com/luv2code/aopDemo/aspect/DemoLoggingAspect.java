@@ -2,10 +2,7 @@ package com.luv2code.aopDemo.aspect;
 
 import com.luv2code.aopDemo.entity.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -34,11 +31,11 @@ public class DemoLoggingAspect {
             returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        System.out.println("After Method Signature: " + signature);
+        System.out.println("After Returning Method Signature: " + signature);
 
         result.forEach(account -> account.setName(account.getName().toUpperCase()));
 
-        System.out.println("After Method Result: " + result);
+        System.out.println("After Returning Method Result: " + result);
     }
 
     @AfterThrowing(
@@ -46,5 +43,11 @@ public class DemoLoggingAspect {
             throwing = "exception")
     public void afterThrowingFindAccountsAdvice(Throwable exception) {
         System.out.println("After Throwing Exception: " + exception.getMessage());
+    }
+
+    @After("execution(* com.luv2code.aopDemo.repository.AccountRepository.findAccounts(..))")
+    public void afterFindAccountsAdvice(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("After Method Signature: " + signature);
     }
 }
